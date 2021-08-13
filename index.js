@@ -55,7 +55,20 @@ let moviesArr = [];
  *  getHighestMetascore(movies);
  *  //> 96
  */
-function getHighestMetascore() {}
+function getHighestMetascore(movies) {
+  if (movies.length === 0){
+    return 0;
+  }
+  let highestMet = 0;
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].metascore > highestMet){
+      highestMet = movies[i].metascore;
+    }
+
+  }
+  return Number(highestMet);
+
+}
 
 /**
  * getAverageIMDBRating()
