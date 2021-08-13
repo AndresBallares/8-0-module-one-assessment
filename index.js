@@ -81,8 +81,38 @@ function getHighestMetascore(movies) {
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
 
+
+function convertObj (movies) {
+  Object.keys(obj).map (function(k) {
+    if(parseInt(movies[i].imdbRating) === Nan){
+      return movies[i].imdbRating;
+    } else {
+      return parseInt(movies[i].imdbRating);
+    }
+  });
+}
+
+
+
+
+
+
+function getAverageIMDBRating(movies) {
+  if (movies.length === 0){
+    return 0;
+  }
+    let ave = 0;
+  for (let i = 0; i < movies.length; i++) {
+    let num = Number(movies[i].imdbRating)
+    if (num > 0){
+      ave += num;
+    }
+    
+  }
+  return ave / movies.length;
+}
+getAverageIMDBRating(exampleMovies)
 /**
  * countByRating()
  * -----------------------------
@@ -94,8 +124,29 @@ function getAverageIMDBRating() {}
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+function countByRating(movies) {
+  if (movies === 0){
+    return {}; 
+  }
 
+  let accu = 0;
+  let obj = {};
+  for (let i = 0; i < movies.length; i++){
+
+    if (movies[i].rated) {
+        obj[movies[i].rated] = "str";
+    } if (movies[i].rated === obj[movies[i].rated]) {
+        acc += obj[movies[i].rated];
+    }
+  }
+
+  for (const rated in obj){
+    obj[rated] = acc;
+  }
+
+  return obj;
+}
+//countByRating(exampleMovies)
 /**
  * findById()
  * -----------------------------
@@ -110,7 +161,16 @@ function countByRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movie, id) {
+ 
+  for (let i = 0; i < movie.length; i++){
+    if (movie.length === 0 || id !== movie[i].imdbID) {
+      return `null`;
+  } else if (movie[i].imdbID === id){ 
+     return movie[i];
+  }
+}
+}
 
 /**
  * filterByGenre()
@@ -132,7 +192,23 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+let newArr = [];
+
+  if (movies.length === 0) {
+    return [];
+  }
+
+  for (let i = 0; i < movies.length; i++) {
+    let gen = movies[i].genre;
+     if (gen.indexOf("genre")) {
+      newArr.push(movies[i]);
+    } else {
+      return [];
+    }
+  }
+  return newArr;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
