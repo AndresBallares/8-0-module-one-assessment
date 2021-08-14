@@ -131,21 +131,15 @@ function countByRating(movies) {
   let accu = 0;
   let obj = {};
   for (let i = 0; i < movies.length; i++){
-
-    if (movies[i].rated) {
-        obj[movies[i].rated] = "str";
-    } if (movies[i].rated === obj[movies[i].rated]) {
-        acc += obj[movies[i].rated];
-    }
+      let movie = movies[i];
+    if (movie.rated) {
+        obj[movies[i].rated] = 0;
+    } 
+   
   }
-
-  for (const rated in obj){
-    obj[rated] = acc;
-  }
-
-  return obj;
+     
+    
 }
-countByRating(exampleMovies)
 /**
  * findById()
  * -----------------------------
@@ -198,15 +192,10 @@ let newArr = [];
     return [];
   }
 
-  for (let i = 0; i < movies.length; i++) {
-    let gen = movies[i].genre;
-     if (gen.indexOf("genre")) {
-      newArr.push(movies[i]);
-    } else {
-      return [];
-    }
-  }
-  return newArr;
+  
+  return newArr;   
+  
+  
 }
 
 /**
@@ -235,8 +224,8 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, number) {
   let newArr = [];
   let newS = number.toString();
   for(let i = 0; i < movies.length; i++) {
-    if (movies[i].realesed <= newS){
-      newArr.push(movies[i].realesed);
+    if (movies[i].released <= newS){
+      newArr.push(movies[i].released);
     }
 
 
